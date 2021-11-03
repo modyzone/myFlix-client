@@ -22923,12 +22923,13 @@ class MainView extends _reactDefault.default.Component {
                     ImagePath: '...'
                 }
             ],
-            setSelectedMovie (newSelectedMovie) {
-                this.setState({
-                    selectedMovie: newSelectedMovie
-                });
-            }
+            selectedMovie: null
         };
+    }
+    setSelectedMovie(newSelectedMovie) {
+        this.setState({
+            selectedMovie: newSelectedMovie
+        });
     }
     render() {
         const { movies , selectedMovie  } = this.state;
@@ -23033,7 +23034,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieView extends _reactDefault.default.Component {
     render() {
-        const { movie , onBackClick  } = this.props;
+        const { movieData , onBackClick  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
             className: "movie-view",
             __source: {
@@ -23050,7 +23051,7 @@ class MovieView extends _reactDefault.default.Component {
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx("img", {
-                        src: movie.ImagePath,
+                        src: movieData.ImagePath,
                         __source: {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 11
@@ -23082,7 +23083,7 @@ class MovieView extends _reactDefault.default.Component {
                                 lineNumber: 15
                             },
                             __self: this,
-                            children: movie.Title
+                            children: movieData.Title
                         })
                     ]
                 }),
@@ -23110,7 +23111,7 @@ class MovieView extends _reactDefault.default.Component {
                                 lineNumber: 19
                             },
                             __self: this,
-                            children: movie.Description
+                            children: movieData.Description
                         })
                     ]
                 }),
