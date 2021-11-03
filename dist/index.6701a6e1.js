@@ -22897,6 +22897,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
+var _inceptionJpg = require("../../img/inception.jpg");
 // Import statement to indicate that you need to bundle `./index.scss`
 var _indexScss = require("../../index.scss");
 class MainView extends _reactDefault.default.Component {
@@ -22907,8 +22908,8 @@ class MainView extends _reactDefault.default.Component {
                 {
                     _id: 1,
                     Title: 'Inception',
-                    Description: 'desc1...',
-                    ImagePath: '...'
+                    Description: 'The film stars Leonardo DiCaprio as a professional thief who steals information by infiltrating the subconscious of his targets. He is offered a chance to have his criminal history erased as payment for the implantation of another person\'s idea into a target\'s subconscious.',
+                    ImagePath: 'src\img\inception.jpg'
                 },
                 {
                     _id: 2,
@@ -22937,7 +22938,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 28
+                lineNumber: 30
             },
             __self: this,
             children: "The list is empty!"
@@ -22946,7 +22947,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 31
+                lineNumber: 33
             },
             __self: this,
             children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
@@ -22956,17 +22957,17 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 33
+                    lineNumber: 35
                 },
                 __self: this
             }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                    movieData: movie,
+                    movie: movie,
                     onMovieClick: (movie1)=>{
                         this.setSelectedMovie(movie1);
                     },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 35
+                        lineNumber: 37
                     },
                     __self: this
                 }, movie._id)
@@ -22981,7 +22982,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"Y39O1","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"cpiuA","../../index.scss":"jUTZ8","../movie-card/movie-card":"6EiBJ","../movie-view/movie-view":"ikZdr","react/jsx-runtime":"8xIwr"}],"jUTZ8":[function() {},{}],"6EiBJ":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","../movie-card/movie-card":"6EiBJ","../movie-view/movie-view":"ikZdr","../../index.scss":"jUTZ8","@parcel/transformer-js/src/esmodule-helpers.js":"Y39O1","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"cpiuA","../../img/inception.jpg":"6di2V"}],"6EiBJ":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4249 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -22997,18 +22998,18 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieCard extends _reactDefault.default.Component {
     render() {
-        const { movieData , onMovieClick  } = this.props;
+        const { movie , onMovieClick  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "movie-card",
             onClick: ()=>{
-                onMovieClick(movieData);
+                onMovieClick(movie);
             },
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
                 lineNumber: 6
             },
             __self: this,
-            children: movieData.Title
+            children: movie.Title
         }));
     }
 }
@@ -23034,7 +23035,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieView extends _reactDefault.default.Component {
     render() {
-        const { movieData , onBackClick  } = this.props;
+        const { movie , onBackClick  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
             className: "movie-view",
             __source: {
@@ -23051,7 +23052,7 @@ class MovieView extends _reactDefault.default.Component {
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx("img", {
-                        src: movieData.ImagePath,
+                        src: movie.ImagePath,
                         __source: {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 11
@@ -23083,7 +23084,7 @@ class MovieView extends _reactDefault.default.Component {
                                 lineNumber: 15
                             },
                             __self: this,
-                            children: movieData.Title
+                            children: movie.Title
                         })
                     ]
                 }),
@@ -23111,7 +23112,7 @@ class MovieView extends _reactDefault.default.Component {
                                 lineNumber: 19
                             },
                             __self: this,
-                            children: movieData.Description
+                            children: movie.Description
                         })
                     ]
                 }),
@@ -23136,6 +23137,44 @@ class MovieView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"Y39O1","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"cpiuA"}]},["j664D","diz0L","dLPEP"], "dLPEP", "parcelRequireaec4")
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"Y39O1","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"cpiuA"}],"jUTZ8":[function() {},{}],"6di2V":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('3VpAv') + "inception.f919e30a.jpg";
+
+},{"./helpers/bundle-url":"6PSJl"}],"6PSJl":[function(require,module,exports) {
+"use strict";
+var bundleURL = {
+};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}]},["j664D","diz0L","dLPEP"], "dLPEP", "parcelRequireaec4")
 
 //# sourceMappingURL=index.6701a6e1.js.map
