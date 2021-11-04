@@ -22898,8 +22898,11 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
 var _inceptionJpg = require("../../img/inception.jpg");
+var _inceptionJpgDefault = parcelHelpers.interopDefault(_inceptionJpg);
 var _theshawshankredemptionJpg = require("../../img/theshawshankredemption.jpg");
+var _theshawshankredemptionJpgDefault = parcelHelpers.interopDefault(_theshawshankredemptionJpg);
 var _gladiatorJpg = require("../../img/gladiator.jpg");
+var _gladiatorJpgDefault = parcelHelpers.interopDefault(_gladiatorJpg);
 // Import statement to indicate that you need to bundle `./index.scss`
 var _indexScss = require("../../index.scss");
 class MainView extends _reactDefault.default.Component {
@@ -22911,19 +22914,19 @@ class MainView extends _reactDefault.default.Component {
                     _id: 1,
                     Title: 'Inception',
                     Description: 'The film stars Leonardo DiCaprio as a professional thief who steals information by infiltrating the subconscious of his targets. He is offered a chance to have his criminal history erased as payment for the implantation of another person\'s idea into a target\'s subconscious.',
-                    ImagePath: 'inception'
+                    ImagePath: `${_inceptionJpgDefault.default}`
                 },
                 {
                     _id: 2,
                     Title: 'The Shawshank Redemption',
                     Description: 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency. Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit.',
-                    ImagePath: 'theshawshankredemption'
+                    ImagePath: `${_theshawshankredemptionJpgDefault.default}`
                 },
                 {
                     _id: 3,
                     Title: 'Gladiator',
                     Description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery. Maximus is a powerful Roman general, loved by the people and the aging Emperor, Marcus Aurelius. Maximus is then relegated to fighting to the death in the gladiator arenas',
-                    ImagePath: 'gladiator'
+                    ImagePath: `${_gladiatorJpgDefault.default}`
                 }
             ],
             selectedMovie: null
@@ -22984,7 +22987,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","../movie-card/movie-card":"6EiBJ","../movie-view/movie-view":"ikZdr","../../img/theshawshankredemption.jpg":"1f4aQ","../../img/gladiator.jpg":"78G3S","../../index.scss":"jUTZ8","@parcel/transformer-js/src/esmodule-helpers.js":"Y39O1","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"cpiuA","../../img/inception.jpg":"6di2V"}],"6EiBJ":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","../movie-card/movie-card":"6EiBJ","../movie-view/movie-view":"ikZdr","../../img/theshawshankredemption.jpg":"1f4aQ","../../index.scss":"jUTZ8","@parcel/transformer-js/src/esmodule-helpers.js":"Y39O1","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"cpiuA","../../img/gladiator.jpg":"78G3S","../../img/inception.jpg":"6di2V"}],"6EiBJ":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4249 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -23177,10 +23180,10 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"78G3S":[function(require,module,exports) {
+},{}],"jUTZ8":[function() {},{}],"78G3S":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('3VpAv') + "gladiator.fd208035.jpg";
 
-},{"./helpers/bundle-url":"6PSJl"}],"jUTZ8":[function() {},{}],"6di2V":[function(require,module,exports) {
+},{"./helpers/bundle-url":"6PSJl"}],"6di2V":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('3VpAv') + "inception.f919e30a.jpg";
 
 },{"./helpers/bundle-url":"6PSJl"}]},["j664D","diz0L","dLPEP"], "dLPEP", "parcelRequireaec4")
