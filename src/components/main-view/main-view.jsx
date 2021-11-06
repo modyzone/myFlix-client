@@ -22,7 +22,7 @@ export class MainView extends React.Component {
     };
   }
   componentDidMount() {
-    axios.get('https://movie_api.herokuapp.com/movies')
+    axios.get('https://thawing-wildwood-26003.herokuapp.com/movies')
       .then(response => {
         this.setState({
           movies: response.data
@@ -32,6 +32,7 @@ export class MainView extends React.Component {
         console.log(error);
       });
   }
+
   /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
   setSelectedMovie(movie) {
     this.setState({
@@ -47,7 +48,7 @@ export class MainView extends React.Component {
 
 
   render() {
-    const { movies, selectedMovie } = this.state;
+    const { movies, selectedMovie, user } = this.state;
     /* If there is no user, the LoginView is rendered. If there is a user logged in, 
     the user details are *passed as a prop to the LoginView*/
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
