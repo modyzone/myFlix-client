@@ -7,6 +7,8 @@ import { MovieCard } from '../movie-card/movie-card';
 
 import { MovieView } from '../movie-view/movie-view';
 
+import { RegistrationView } from '../registration-view/registration-view';
+
 import inception from '../../img/inception.jpg';
 import theshawshankredemption from '../../img/theshawshankredemption.jpg';
 import gladiator from '../../img/gladiator.jpg';
@@ -41,6 +43,11 @@ export class MainView extends React.Component {
   }
   /*When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
   onLoggedIn(user) {
+    this.setState({
+      user
+    });
+  }
+  onRegisteration(user) {
     this.setState({
       user
     });
