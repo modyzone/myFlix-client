@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 
 
 export function RegistrationView(props) {
@@ -13,31 +14,69 @@ export function RegistrationView(props) {
         console.log(username, password, email, birthdate);
         /* Send a request to the server for authentication */
         /* then call props.onRegistration(newUser) */
-        props.onRegistration(username, password, email, birthdate);   
+        props.onRegistration(username, password, email, birthdate);
     };
 
     return (
-        <form>
-            <label>
-                Username:
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            </label>
-            <label>
-                Password:
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            </label>
-            <label>
-                Email:
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
-            </label>
-            <label>
-                Birthdate:
-                <input type="birthdate" value={birthdate} onChange={e => setBirthdate(e.target.value)} />
-            </label>
+        <Container>
+            <Row>
+                <Col>
+                    <CardGroup>
+                        <Card>
+                            <Card.Body>
+                                <Card.Title>Please Register</Card.Title>
+                                <Form>
+                                    <Form.Group>
+                                        <Form.Label> Username: </Form.Label>
+                                        <Form.Control
+                                            size='lg'
+                                            type='text'
+                                            value={username}
+                                            onChange={e => setUsername(e.target.value)}
+                                            required
+                                            placeholder='Enter a username'
+                                        />
+                                    </Form.Group>
+
+                                    <Form.Group>
+                                        <Form.Label>Password: </Form.Label>
+                                        <Form.Control
+                                            size='lg'
+                                            type="password"
+                                            value={password}
+                                            onChange={e => setPassword(e.target.value)}
+                                            required
+                                            minLength='8'
+                                            placeholder='Your password must be 8 or more characters'
+                                        />
+                                    </Form.Group>
+
+                                    <Form.Group>
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control
+                                            type='email'
+                                            value={email}
+                                            onChange={e => setEmail(e.target.value)}
+                                            required
+                                            placeholder='Enter your email address'
+                                        />
+                                    </Form.Group>
 
 
-            <button type="submit" onClick={handleSubmit}>Register</button>
-        </form>
+                                    <Button variant='primary'
+                                        type='submit'
+                                        defaultValue='#563d7c'
+                                        onClick={handleSubmit}>
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Card.Body>
+                        </Card>
+                    </CardGroup>
+                </Col>
+            </Row>
+        </Container>
+
     );
 }
 RegistrationView.propTypes = {

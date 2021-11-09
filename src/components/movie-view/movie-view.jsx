@@ -1,5 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { Container, Row, Col, Button, Card, CardGroup } from 'react-bootstrap';
+
 
 export class MovieView extends React.Component {
 
@@ -35,14 +37,14 @@ export class MovieView extends React.Component {
 }
 MovieView.propTypes = {
   movie: propTypes.shape({
-Title: propTypes.string.isRequired,
-Description: propTypes.string.isRequired,
-Imagepath: propTypes.string.isRequired,
-Genre: propTypes.shape({
-  Name: propTypes.string.isRequired,
-}),
-Director: propTypes.shape({
-  Name: propTypes.string.isRequired,
-})
+    Title: propTypes.string.isRequired,
+    Description: propTypes.string.isRequired,
+    Imagepath: propTypes.string.isRequired,
+    Genre: propTypes.shape({
+      Name: propTypes.string.isRequired,
+    }),
+    Director: propTypes.shape({
+      Name: propTypes.string.isRequired,
+    })
   }),
 };
