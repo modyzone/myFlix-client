@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+//importing React-router-dom components
+
+
 import { LoginView } from '../login-view/login-view';
 
 import { MovieCard } from '../movie-card/movie-card';
@@ -9,10 +12,15 @@ import { MovieView } from '../movie-view/movie-view';
 
 import { RegistrationView } from '../registration-view/registration-view';
 
-import Container from 'react-bootstrap/Container';
 
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Navbar from 'react-bootstrap/Navbar';
+import Link from 'react-router-dom';
+
+//Importing SCSS styling component
+import './main-view.scss';
 
 export class MainView extends React.Component {
   constructor() {
@@ -66,21 +74,38 @@ export class MainView extends React.Component {
     if (movies.length === 0) return <div className="main-view" />;
 
     return (
-      /*If the state of `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/
-      <Row className="main-view justify-content-md-center">
-        {selectedMovie
-          ? (
-            <Col md={8}>
-              <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-            </Col>
-          )
-          : movies.map(movie => (
-            <Col md={3}>
-              <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-            </Col>
-          ))
-        }
-      </Row>
+      <div className="main-view">
+        <Navbar bg="navColor" variant="dark" expand="lg">
+          <Container fluid>
+            <Navbar.Brand href='#login-view.jsx'>users</Navbar.Brand>
+            <Nav className="movies">
+              <Nav.Link href="#movie-view.jsx">Home-Page</Nav.Link>
+            </Nav>
+          </Container>
+        </Navbar>
+        <div>
+          <Container>
+            {selectedMovie
+              ? (
+                <Row className="justify-content-lg-center">
+                  <Col lg={9} >
+                    <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                  </Col>
+                </Row>
+              )
+              : (
+                <Row className="justify-content-lg-center">
+                  {movies.map(movie => (
+                    <Col lg={3} md={4} sm={6} >
+                      <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
+                    </Col>
+                  ))
+                  }
+                </Row>
+              )}
+          </Container>
+        </div>
+      </div>
     );
   }
 }
@@ -89,3 +114,4 @@ export default MainView;
 
 // Import statement to indicate that you need to bundle `./index.scss`
 import '../../index.scss';
+import { Nav } from 'react-bootstrap';

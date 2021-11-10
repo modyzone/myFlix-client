@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Container, Row, Col, Button, Card, CardGroup } from 'react-bootstrap';
-
+import Navbar from 'react-bootstrap/Navbar'
 
 export class MovieView extends React.Component {
 
