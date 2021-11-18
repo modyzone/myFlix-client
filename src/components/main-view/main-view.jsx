@@ -2,15 +2,14 @@ import React from 'react';
 import axios from 'axios';
 // Import statement to indicate that you need to bundle `./index.scss`
 import '../../index.scss';
-import { BrowserRouter as Router, Redirect } from "react-router-dom";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 //importing React-router-dom components
 
 
 import { LoginView } from '../login-view/login-view';
 
 import { MovieCard } from '../movie-card/movie-card';
-
+import { ProfileView } from '../profile-view/profile-view';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
@@ -19,6 +18,7 @@ import { RegistrationView } from '../registration-view/registration-view';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Navbar, Nav } from 'react-bootstrap';
 
 
 
@@ -34,15 +34,6 @@ export class MainView extends React.Component {
       user: null
     };
   }
-  componentDidMount() {
-    let accessToken = localStorage.getItem('token');
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
-      this.getMovies(accessToken);
-    }
-  }
   getMovies(token) {
     axios.get('https://thawing-wildwood-26003.herokuapp.com/movies', {
       headers: { Authorization: `Bear ${token}` }
@@ -57,6 +48,16 @@ export class MainView extends React.Component {
         console.log(error);
       });
   }
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
+  }
+ 
   /*When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
   onLoggedIn(authData) {
     console.log(authData);
@@ -67,12 +68,18 @@ export class MainView extends React.Component {
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
   }
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
+    });
+  }
 
   render() {
     const { movies, user } = this.state;
 
-    return <Routes>
-    <Router>
+    return <Router>
         <Row className="main-view justify -conten-md-center">
           <Route exact path="/" render={() => {
             if (!user) return <Col>
@@ -122,7 +129,6 @@ export class MainView extends React.Component {
           } />
         </Row>
       </Router>
-      </Routes>
   }
 }
 export default MainView;

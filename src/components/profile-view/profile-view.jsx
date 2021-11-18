@@ -38,7 +38,7 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
             <Col xs={12} sm={4}>
                 <Card>
                     <Card.Body>
-                <UserInfo name={user.Username} email={user.Email} />
+                <UserInfo name={user.Username} email={user.Email} birthdate={user.birthdate} />
                 </Card.Body>
                 </Card>
             </Col>

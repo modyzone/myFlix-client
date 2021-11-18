@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import axios from 'axios';
+
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -60,6 +61,5 @@ LoginView.propTypes = {
   register: PropTypes.shape({
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
-    Birthdate: PropTypes.string.isRequired
   })
-}
+};
