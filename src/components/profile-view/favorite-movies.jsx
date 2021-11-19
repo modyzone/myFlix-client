@@ -1,32 +1,48 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Col, Row, Figure, Button } from 'react-bootstrap';
+import { Col, Row, Figure, Button, Card } from 'react-bootstrap';
+import './profile-view.scss';
+
 
 function FavoriteMovies({ favoriteMovieList }) {
+    const removeFav = (id) => {
+        let token = localStorage.getItem('token');
+        let url = `https://thawing-wildwood-26003.herokuapp.com/users/${localStorage.getItem('user')}/movies/${id}`;
+        axios.delete(url, {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+    }
     return (
-        <>
+        <Card>
+            <Card.Body>
         <Row>
             <Col xs={12}>
                 <h4>Favorite Movies</h4>
             </Col>
             </Row>
             <Row>
-            {favoriteMovieList.map((movies) => {
+            {favoriteMovieList.map(({ ImagePath, Title, _id }) => {
                 return (
-                    <Col xs={12} md={6} lg={3} key={movies._id}>
-                        <img src={movies.ImagePath} />
-                        <Link to={`/movies/${movies._id}`}>
-                            <h4>{movies.Title}</h4>
+                    <Col xs={12} md={6} lg={3} key={_id} className="fav-movie">
+                        <Figure>
+                            <Link to={`/movies/${_id}`}>
+                                <Figure.Image
+                        src={ImagePath}
+                        alt={Title}
+                        />
+                        <Figure.Caption>
+                            {Title}
+                        </Figure.Caption>
                         </Link>
-                        <button variant="secondary" onClick={() => removeFav(movies._id)}>Remove from list</button>
-                    </Col>
+                        </Figure>
+                        <Button variant="secondary" onClick={() => removeFav(_id)}>Remove</Button>
+                        </Col>
                 )
             })
-            }
+        }
         </Row>
-
-        </>
+        </Card.Body>
+        </Card>
     )
-}
-
+        }
 export default FavoriteMovies
