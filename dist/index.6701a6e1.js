@@ -22771,8 +22771,24 @@ class MainView extends _reactDefault.default.Component {
         //Initial state is set to null
         this.state = {
             movies: [],
-            user: null
+            selectedMovie: null,
+            Description: null,
+            user: null,
+            Movies: null
         };
+    }
+    getUsers(token) {
+        _axiosDefault.default.get('https://thawing-wildwood-26003.herokuapp.com/users/', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            this.setState({
+                users: response.data
+            });
+        }).catch(function(error) {
+            console.log(error);
+        });
     }
     getMovies(token) {
         _axiosDefault.default.get('https://thawing-wildwood-26003.herokuapp.com/movies', {
@@ -22797,6 +22813,11 @@ class MainView extends _reactDefault.default.Component {
             this.getMovies(accessToken);
         }
     }
+    setSelectedMovie(newSelectedMovie) {
+        this.setState({
+            selectedMovie: newSelectedMovie
+        });
+    }
     /*When a user successfully logs in, this function updates the `user` property in state to that *particular user*/ onLoggedIn(authData) {
         console.log(authData);
         this.setState({
@@ -22814,18 +22835,18 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     render() {
-        const { movies , user  } = this.state;
+        const { movies , user , users  } = this.state;
         return(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 82
+                lineNumber: 104
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_rowDefault.default, {
                 className: "main-view justify -conten-md-center",
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 83
+                    lineNumber: 105
                 },
                 __self: this,
                 children: [
@@ -22851,7 +22872,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 84
+                            lineNumber: 106
                         },
                         __self: this
                     }),
@@ -22868,7 +22889,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 95
+                            lineNumber: 117
                         },
                         __self: this
                     }),
@@ -22894,7 +22915,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 101
+                            lineNumber: 123
                         },
                         __self: this
                     }),
@@ -22920,7 +22941,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 110
+                            lineNumber: 132
                         },
                         __self: this
                     }),
@@ -22946,7 +22967,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 120
+                            lineNumber: 142
                         },
                         __self: this
                     })
@@ -27730,7 +27751,7 @@ function LoginView(props) {
 _s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
 _c = LoginView;
 LoginView.propTypes = {
-    register: _propTypesDefault.default.shape({
+    Register: _propTypesDefault.default.shape({
         Username: _propTypesDefault.default.string.isRequired,
         Password: _propTypesDefault.default.string.isRequired
     })

@@ -17,7 +17,7 @@ export function LoginView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     /* Send a request to the server for authentication */
-    axios.post('https://thawing-wildwood-26003.herokuapp.com/login?Username=batman&Password=baby', {
+    axios.post('https://thawing-wildwood-26003.herokuapp.com/login', {
       Username: username,
       Password: password
     })
@@ -58,7 +58,7 @@ export function LoginView(props) {
 
 
 LoginView.propTypes = {
-  register: PropTypes.shape({
+  Register: PropTypes.shape({
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
   })
