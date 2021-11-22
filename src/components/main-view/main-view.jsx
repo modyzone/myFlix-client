@@ -51,7 +51,7 @@ export class MainView extends React.Component {
       });
   }
   getMovies(token) {
-    axios.get('https://thawing-wildwood-26003.herokuapp.com/movies',{}, {
+    axios.get('https://thawing-wildwood-26003.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {

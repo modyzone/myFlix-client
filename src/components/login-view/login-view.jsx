@@ -17,7 +17,7 @@ export function LoginView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     /* Send a request to the server for authentication */
-    axios.post('https://thawing-wildwood-26003.herokuapp.com/login', {
+    axios.post(`https://thawing-wildwood-26003.herokuapp.com/login?Username=${username}&Password=${password}`, {
       Username: username,
       Password: password
     })

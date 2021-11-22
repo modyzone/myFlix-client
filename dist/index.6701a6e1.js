@@ -22792,7 +22792,6 @@ class MainView extends _reactDefault.default.Component {
     }
     getMovies(token) {
         _axiosDefault.default.get('https://thawing-wildwood-26003.herokuapp.com/movies', {
-        }, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -27642,7 +27641,7 @@ function LoginView(props) {
     const [password, setPassword] = _react.useState('');
     const handleSubmit = (e)=>{
         e.preventDefault();
-        /* Send a request to the server for authentication */ _axiosDefault.default.post('https://thawing-wildwood-26003.herokuapp.com/login', {
+        /* Send a request to the server for authentication */ _axiosDefault.default.post(`https://thawing-wildwood-26003.herokuapp.com/login?Username=${username}&Password=${password}`, {
             Username: username,
             Password: password
         }).then((response)=>{
@@ -28832,7 +28831,7 @@ class MovieCard extends _reactDefault.default.Component {
                             children: movie.Description
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
-                            to: `/movies/${movies._id}`,
+                            to: `/movies/${movie._id}`,
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
                                 lineNumber: 19
