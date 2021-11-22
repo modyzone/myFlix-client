@@ -51,8 +51,8 @@ export class MainView extends React.Component {
       });
   }
   getMovies(token) {
-    axios.get('https://thawing-wildwood-26003.herokuapp.com/movies', {
-      headers: { Authorization: `Bear ${token}` }
+    axios.get('https://thawing-wildwood-26003.herokuapp.com/movies',{}, {
+      headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
         // Assign the result to the state
@@ -66,6 +66,7 @@ export class MainView extends React.Component {
   }
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
+    console.log(accessToken);
     if (accessToken !== null) {
       this.setState({
         user: localStorage.getItem('user')

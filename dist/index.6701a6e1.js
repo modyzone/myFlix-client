@@ -22792,8 +22792,9 @@ class MainView extends _reactDefault.default.Component {
     }
     getMovies(token) {
         _axiosDefault.default.get('https://thawing-wildwood-26003.herokuapp.com/movies', {
+        }, {
             headers: {
-                Authorization: `Bear ${token}`
+                Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
             // Assign the result to the state
@@ -22806,6 +22807,7 @@ class MainView extends _reactDefault.default.Component {
     }
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
+        console.log(accessToken);
         if (accessToken !== null) {
             this.setState({
                 user: localStorage.getItem('user')
@@ -22839,14 +22841,14 @@ class MainView extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 104
+                lineNumber: 105
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_rowDefault.default, {
                 className: "main-view justify -conten-md-center",
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 105
+                    lineNumber: 106
                 },
                 __self: this,
                 children: [
@@ -22872,7 +22874,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 106
+                            lineNumber: 107
                         },
                         __self: this
                     }),
@@ -22889,7 +22891,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 117
+                            lineNumber: 118
                         },
                         __self: this
                     }),
@@ -22915,7 +22917,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 123
+                            lineNumber: 124
                         },
                         __self: this
                     }),
@@ -22941,7 +22943,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 132
+                            lineNumber: 133
                         },
                         __self: this
                     }),
@@ -22967,7 +22969,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 142
+                            lineNumber: 143
                         },
                         __self: this
                     })
@@ -27640,7 +27642,7 @@ function LoginView(props) {
     const [password, setPassword] = _react.useState('');
     const handleSubmit = (e)=>{
         e.preventDefault();
-        /* Send a request to the server for authentication */ _axiosDefault.default.post('https://thawing-wildwood-26003.herokuapp.com/login?Username=batman&Password=baby', {
+        /* Send a request to the server for authentication */ _axiosDefault.default.post('https://thawing-wildwood-26003.herokuapp.com/login', {
             Username: username,
             Password: password
         }).then((response)=>{
