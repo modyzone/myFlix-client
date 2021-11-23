@@ -5,9 +5,7 @@ import '../../index.scss';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 //importing React-router-dom components
 
-
 import { LoginView } from '../login-view/login-view';
-
 import { MovieCard } from '../movie-card/movie-card';
 import { ProfileView } from '../profile-view/profile-view';
 import { MovieView } from '../movie-view/movie-view';
@@ -34,7 +32,7 @@ export class MainView extends React.Component {
       selectedMovie: null,
       Description: null,
       user: null,
-      Movies: null,
+     
     };
   }
   getUsers(token) {
@@ -86,10 +84,17 @@ export class MainView extends React.Component {
     this.setState({
       user: authData.user.Username,
     });
+    
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
   }
+  onRegistration(authData) {
+    console.log(authData);
+    this.setState({
+    });
+  }
+
   onLoggedOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -99,7 +104,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user, users } = this.state;
+    const { movies, user, register } = this.state;
 
    
  return <Router>
@@ -108,6 +113,10 @@ export class MainView extends React.Component {
      if (!user) return <Col>
        <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
      </Col>
+     if (!register) return <Col>
+     <RegistrationView onRegistration={register => this.onRegistration(register)} />;
+     </Col>
+
      if (movies.length === 0) return <div className="main-view" />;
      return movies.map(m => (
        <Col md={3} key={m._id}>
@@ -155,5 +164,3 @@ export class MainView extends React.Component {
 }
 }
 export default MainView;
-
-

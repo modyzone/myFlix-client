@@ -1,65 +1,75 @@
 import React from 'react';
-import propTypes from 'prop-types';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import PropTypes from 'prop-types';
 
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import './movie-view.scss';
 
 export class MovieView extends React.Component {
-
-  keypressCallback(event) {
-    console.log(event.key);
-  }
-  componentDidMount() {
-    document.addEventListener('keypress', this.keypressCallback);
-  }
-
 
   render() {
     const { movie, onBackClick } = this.props;
 
     return (
-      <Container>
+      <Container fluid className="movie-view-container">
         <Row>
-          <div className="movie-view">
-            <div className="movie-poster">
-              <img src={movie.ImagePath} />
+          <Col>
+            <div className="movie-view">
+              <div className="movie-poster">
+                <img src={movie.ImagePath} />
+              </div>
+              <div className="movie-title">
+                <span className="title">Title: </span>
+                <span className="value">{movie.Title} </span>
+              </div>
+              <div className="movie-release-date">
+                <span className="release-date">Release Date: </span>
+                <span className="value">{movie.ReleaseDate} </span>
+              </div>
+              <div className="movie-description">
+                <span className="description">Description: </span>
+                <span className="value">{movie.Description} </span>
+              </div>
+              <div className="movie-genre">
+                <span className="genre">Genre: </span>
+                <span className="value">{movie.Genre} </span>
+              </div>
+              <div className="genre-description">
+                <span className="genre">Description: </span>
+                <span className="value">{movie.Genre.Description} </span>
+              </div>
+              <div className="movie-director">
+                <span className="director">Director: </span>
+                <span className="value">{movie.Director.Name} </span>
+              </div>
+              <div className="director-bio">
+                <span className="director">Bio: </span>
+                <span className="value">{movie.Director.Bio} </span>
+              </div>
+              <div className="movie-view-button-div">
+                <Button className="movie-view-button" onClick={() => { onBackClick(null); }}>Back</Button>
+              </div>
             </div>
-            <div className="movie-title">
-              <span className="label">Title: </span>
-              <span className="value">{movie.Title}</span>
-            </div>
-            <div className="movie-description">
-              <span className="label">Description: </span>
-              <span className="value">{movie.Description}</span>
-            </div>
-            <Link to={`/directors/${movie.Director.Name}`}>
-              <Button variant="link">Director</Button>
-            </Link>
-            <Link to={`/genres/${movie.Genre.Name}`}>
-              <Button varaint="link">Genre</Button>
-            </Link>
-            <Route path="/movies/:moviesId" render={({ match, history }) => {
-              return <Col md={8}>
-                <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
-              </Col>
-            }} />
-          </div>
+          </Col>
         </Row>
       </Container>
     );
   }
 }
+
+
 MovieView.propTypes = {
-  movie: propTypes.shape({
-    Title: propTypes.string.isRequired,
-    Description: propTypes.string.isRequired,
-    Imagepath: propTypes.string.isRequired,
-    Genre: propTypes.shape({
-      Name: propTypes.string.isRequired,
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    ReleaseDate: PropTypes.number.isRequired,
+    Description: PropTypes.string.isRequired,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired
     }),
-    Director: propTypes.shape({
-      Name: propTypes.string.isRequired,
-    })
-  }),
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
+    }),
+    ImagePath: PropTypes.string.isRequired
+  }).isRequired,
 };
