@@ -1,106 +1,98 @@
 import React, { useState } from "react";
-import axios from "axios";
 import PropTypes from "prop-types";
-import {
-  Form,
-  Button,
-  Card,
-  CardGroup,
-  Container,
-  Col,
-  Row,
-} from "react-bootstrap";
+import { Card, Form, Button, Container, Col, Row } from "react-bootstrap";
+import "./registration-view.scss";
+import axios from "axios";
 
 export function RegistrationView(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [Username, setUsername] = useState("");
+  const [Password, setPassword] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Birthday, setBirthday] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password, email);
     axios
       .post("https://thawing-wildwood-26003.herokuapp.com/users", {
-        Username: username,
-        Password: password,
-        Email: email,
+        Username: Username,
+        Password: Password,
+        Email: Email,
+        Birthday: Birthday,
       })
       .then((response) => {
         const data = response.data;
         console.log(data);
-        window.open("/", "_self"); //'_self' is necessary to open the page in the current tab
+        alert("Registration Success!");
+        window.open("/", "_self");
       })
-      .catch((e) => {
-        console.log("error registering the user");
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
   return (
     <Container>
       <Row>
+        <Col></Col>
         <Col>
-          <CardGroup>
-            <Card>
-              <Card.Body>
-                <Card.Title>Please Register</Card.Title>
-                <Form>
-                  <Form.Group>
-                    <Form.Label> Username: </Form.Label>
-                    <Form.Control
-                      size="lg"
-                      type="text"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
-                      placeholder="Enter a username"
-                    />
-                  </Form.Group>
+          <Card className="registrationCard">
+            <p style={{ color: "grey" }}>Create New Account</p>
 
-                  <Form.Group>
-                    <Form.Label>Password: </Form.Label>
-                    <Form.Control
-                      size="lg"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      minLength="8"
-                      placeholder="Your password must be 8 or more characters"
-                    />
-                  </Form.Group>
+            <Form className="register-card" onSubmit={this.handleSubmit}>
+              <Form.Group controlId="formRegisterUsername">
+                <Form.Label style={{ color: "white" }}>Username:</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={Username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      placeholder="Enter your email address"
-                    />
-                  </Form.Group>
+              <Form.Group controlId="formRegisterPassword">
+                <Form.Label style={{ color: "white" }}>Password:</Form.Label>
+                <Form.Control
+                  type="password"
+                  value={Password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>
 
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    defaultValue="#563d7c"
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </Button>
-                </Form>
-              </Card.Body>
-            </Card>
-          </CardGroup>
+              <Form.Group controlId="formEmail">
+                <Form.Label style={{ color: "white" }}>Email:</Form.Label>
+                <Form.Control
+                  type="email"
+                  value={Email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formBirthday">
+                <Form.Label style={{ color: "white" }}>Birthday:</Form.Label>
+                <Form.Control
+                  type="date"
+                  value={Birthday}
+                  onChange={(e) => setBirthday(e.target.value)}
+                />
+              </Form.Group>
+              <br />
+              <Button variant="danger" type="submit" onClick={handleSubmit}>
+                Register
+              </Button>
+            </Form>
+          </Card>
         </Col>
+        <Col></Col>
       </Row>
     </Container>
   );
 }
+
 RegistrationView.propTypes = {
-  register: PropTypes.shape({
+  registeration: PropTypes.shape({
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
-    Birthdate: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+    Birthday: PropTypes.string,
   }),
+  onRegistration: PropTypes.func,
 };

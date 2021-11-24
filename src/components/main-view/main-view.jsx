@@ -78,6 +78,7 @@ export class MainView extends React.Component {
   }
 
   /*When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
+
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
@@ -106,7 +107,7 @@ export class MainView extends React.Component {
 
     return (
       <Router>
-        <Row className="main-view justify -conten-md-center">
+        <Row className="main-view justify-content-md-center">
           <Route
             exact
             path="/"

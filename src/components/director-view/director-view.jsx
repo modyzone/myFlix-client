@@ -1,56 +1,75 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import React from "react";
+import PropTypes from "prop-types";
 
+import { Container, Card, Button, Row, Col } from "react-bootstrap";
+
+import "./director-view.scss";
 
 export class DirectorView extends React.Component {
-
-    keypressCallback(event) {
-        console.log(event.key);
-    }
-    componentDidMount() {
-        document.addEventListener('keypress', this.keypressCallback);
-    }
     render() {
-        const { movie, onBackClick } = this.props;
+        const { Director, onBackClick, movies, movie } = this.props;
 
         return (
             <Container>
-                <Row>
-                    <Col>
-                        <div className="director-view">
-                            <span className="label">Director: </span>
-                            <span className="value">{movie.Director}</span>
+                <br />
+                <Card align="center">
+                    <h4>Director</h4>
+                    <Card.Body>
+                        <div>
+                            <span className="label">Name: </span>
+                            <span className="value">{Director.Name}</span>
                         </div>
-                        <div className="director-description">
-                            <span className="description">Description:</span>
-                            <span className="value">{director.Description}</span>
+                        <div>
+                            <span className="label">Bio: </span>
+                            <span className="value">{Director.Bio}</span>
                         </div>
-                        <Route path="/directors/:name" render={({ match, history }) => {
-                            if (movies.length === 0) return <div className="main-view" />
-                            return <Col md={8}>
-                                <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
+                        <div>
+                            <span className="label">Born: </span>
+                            <span className="value">{Director.Birth}</span>
+                        </div>
+                        <div>
+                            <span className="label">Death: </span>
+                            <span className="value">{Director.Death}</span>
+                        </div>
+                        <Row className="director-movies text-center">
+                            <Col>
+                                <p>
+                                    <strong>{Director.Name}'s Movies</strong>
+                                </p>
                             </Col>
-                        }} />
-                    </Col>
-                </Row>
+                        </Row>
+                        <Row>
+                            <Col className="img-container text-center">
+                                {movies.map((m) => {
+                                    if (m.Director && m.Director.Name === Director.Name) {
+                                        return (
+                                            <Card.Img
+                                                className="movie-img"
+                                                variant="top"
+                                                key={m._id}
+                                                src={m.ImagePath}
+                                            />
+                                        );
+                                    }
+                                })}
+                            </Col>
+                        </Row>
+                        <br />
+                        <div className="backButton">
+                            <Button size="md" variant="outline-primary" onClick={() => { onBackClick(null); }}>Back</Button>
+                        </div>
+                    </Card.Body>
+                </Card>
             </Container>
         );
     }
 }
-DirectorView.propTypes = {
-    movie: propTypes.shape({
-        Title: propTypes.string.isRequired,
-        Description: propTypes.string.isRequired,
-        Imagepath: propTypes.string.isRequired,
-        Genre: propTypes.shape({
-            Name: propTypes.string.isRequired,
-        }),
-        Director: propTypes.shape({
-            Name: propTypes.string.isRequired,
-        })
-    }),
+
+DirectorView.proptypes = {
+    Director: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+        Bio: PropTypes.string,
+        Birth: PropTypes.number,
+        Death: PropTypes.number,
+    }).isRequired,
 };
