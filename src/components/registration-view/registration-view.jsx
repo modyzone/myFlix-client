@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import {
   Form,
@@ -14,15 +15,24 @@ export function RegistrationView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [birthdate, setBirthdate] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password, email, birthdate);
-    /* Send a request to the server for authentication */
-
-    /* then call props.onRegistration(newUser) */
-    props.onRegistration(username, password, email, birthdate);
+    console.log(username, password, email);
+    axios
+      .post("https://thawing-wildwood-26003.herokuapp.com/users", {
+        Username: username,
+        Password: password,
+        Email: email,
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        window.open("/", "_self"); //'_self' is necessary to open the page in the current tab
+      })
+      .catch((e) => {
+        console.log("error registering the user");
+      });
   };
 
   return (
