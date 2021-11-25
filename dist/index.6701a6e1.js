@@ -22964,7 +22964,7 @@ class MainView extends _reactDefault.default.Component {
                             return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                 md: 8,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_genreView.GenreView, {
-                                    genre: movies.find((m)=>m.Genre.Name === match.params.name
+                                    Genre: movies.find((m)=>m.Genre.Name === match.params.name
                                     ).Genre,
                                     onBackClick: ()=>history.goBack()
                                 })
@@ -40498,7 +40498,7 @@ class MovieView extends _reactDefault.default.Component {
         const Username = localStorage.getItem("user");
         const token = localStorage.getItem("token");
         const { movie  } = this.props;
-        _axiosDefault.default.post(`https://joaoandrademyflix.herokuapp.com/users/${Username}/movies/${movie._id}`, {
+        _axiosDefault.default.post(`https://thawing-wildwood-26003.herokuapp.com/users/${Username}/movies/${movie._id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -41188,6 +41188,7 @@ class GenreView extends _reactDefault.default.Component {
     }
 }
 GenreView.propTypes = {
+    onBackClick: _propTypesDefault.default.func,
     Genre: _propTypesDefault.default.shape({
         Name: _propTypesDefault.default.string.isRequired,
         Description: _propTypesDefault.default.string.isRequired
