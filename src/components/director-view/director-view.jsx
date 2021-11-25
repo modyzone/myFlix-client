@@ -72,4 +72,6 @@ DirectorView.proptypes = {
         Birth: PropTypes.number,
         Death: PropTypes.number,
     }).isRequired,
+    onBackClick: PropTypes.func,
+    movies: PropTypes.array
 };

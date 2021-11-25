@@ -22938,9 +22938,11 @@ class MainView extends _reactDefault.default.Component {
                             return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                 md: 8,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_directorView.DirectorView, {
-                                    director: movies.find((m)=>m.Director.Name === match.params.name
+                                    Director: movies.find((m)=>m.Director.Name === match.params.name
                                     ).Director,
                                     onBackClick: ()=>history.goBack()
+                                    ,
+                                    movies: movies
                                 })
                             }));
                         },
@@ -22972,7 +22974,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 184
+                            lineNumber: 185
                         },
                         __self: this
                     })
@@ -41058,7 +41060,9 @@ DirectorView.proptypes = {
         Bio: _propTypesDefault.default.string,
         Birth: _propTypesDefault.default.number,
         Death: _propTypesDefault.default.number
-    }).isRequired
+    }).isRequired,
+    onBackClick: _propTypesDefault.default.func,
+    movies: _propTypesDefault.default.array
 };
 
   $parcel$ReactRefreshHelpers$f8cc.postlude(module);
