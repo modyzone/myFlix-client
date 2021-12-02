@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { setUser, updateUser } from '../../actions/actions';
 import "./profile-view.scss";
 
 export class ProfileView extends React.Component {
@@ -35,12 +35,13 @@ export class ProfileView extends React.Component {
     }
 
     getUser = (token) => {
-        const Username = localStorage.getItem("user");
+        const username = localStorage.getItem("user"); //here changed from Username into username
         axios
-            .get(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
+            .get(`https://thawing-wildwood-26003.herokuapp.com/users/${username}`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((response) => {
+                console.log(response.data.Username)
                 this.setState({
                     Username: response.data.Username,
                     Password: response.data.Password,
@@ -54,14 +55,14 @@ export class ProfileView extends React.Component {
             });
     };
     // Allow user to edit or update profile
-    editUser = (e) => {
+    handleUpdateSubmit = (e) => {
         e.preventDefault();
-        const Username = localStorage.getItem("user");
+        const username = localStorage.getItem("user");
         const token = localStorage.getItem("token");
 
         axios
             .put(
-                `https://joaoandrademyflix.herokuapp.com/users/${Username}`,
+                `https://thawing-wildwood-26003.herokuapp.com/users/${username}`,
                 {
                     Username: this.state.Username,
                     Password: this.state.Password,
@@ -83,9 +84,7 @@ export class ProfileView extends React.Component {
                 localStorage.setItem("user", this.state.Username);
                 const data = response.data;
                 console.log(data);
-                console.log(this.state.Username);
                 alert("Profile is updated!");
-                window.open(`/users/${Username}`, "_self");
             })
             .catch(function (error) {
                 console.log(error);
@@ -97,7 +96,7 @@ export class ProfileView extends React.Component {
         const Username = localStorage.getItem("user");
         const token = localStorage.getItem("token");
 
-        axios.delete(`https://joaoandrademyflix.herokuapp.com/user/${Username}`, {
+        axios.delete(`https://thawing-wildwood-26003.herokuapp.com/user/${Username}`, {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
@@ -113,17 +112,11 @@ export class ProfileView extends React.Component {
     }
 
     setUsername(value) {
-        this.setState({
-            Username: value,
-        });
-        this.Username = value;
+        this.state.Username = value;
     }
 
     setPassword(value) {
-        this.setState({
-            Password: value,
-        });
-        this.Password = value;
+        this.state.Password = value;
     }
 
     setEmail(value) {
@@ -141,7 +134,7 @@ export class ProfileView extends React.Component {
     }
 
     render() {
-        const { movies, onBackClick } = this.props;
+        const { movies, onBackClick, movie, user } = this.props;
         const { FavoriteMovies, Username, Email, Birthday } = this.state;
 
         return (

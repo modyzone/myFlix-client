@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 
 import { LoginView } from "../login-view/login-view";
+import { LogoutView } from "../logout-view/logout-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { ProfileView } from "../profile-view/profile-view";
 import { MovieView } from "../movie-view/movie-view";
@@ -133,6 +134,26 @@ import MoviesList from '../movies-list/movies-list';
               return <MoviesList movies={movies}/>;
             }}
           />
+           <Route
+                exact
+                path="/users/:Username"
+                render={({ match, history }) => {
+                  if (!user)
+                    return ( <Col>
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                      </Col>
+                    );
+                  if (movies.length === 0) return <div className="main-view" />;
+                  return ( <Col>
+                    <ProfileView
+                      movies={movies}
+                      user={user}
+                      onBackClick={() => history.goBack()}
+                    />
+                    </Col>
+                  );
+                }}
+              />
           <Route
             path="/register"
             render={() => {
