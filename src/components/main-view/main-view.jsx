@@ -13,7 +13,6 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 
 import { LoginView } from "../login-view/login-view";
-import { LogoutView } from "../logout-view/logout-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { ProfileView } from "../profile-view/profile-view";
 import { MovieView } from "../movie-view/movie-view";
@@ -230,11 +229,13 @@ import MoviesList from '../movies-list/movies-list';
                     onBackClick={() => history.goBack()}
                   />
                 </Col>
-              );
-              
+              );  
             }}
           />
           {/* The rest of routes */}
+          <Col md={6}>
+          <button onClick={() => { this.onLoggedOut() }}>Logout</button>
+          </Col>
         </Row>
       </Router>
     );
