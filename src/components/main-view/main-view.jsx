@@ -32,7 +32,7 @@ import { setMovies } from '../../actions/actions';
 // we haven't written this one yet
 import MoviesList from '../movies-list/movies-list';
 
- class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     super();
     //Initial state is set to null
@@ -129,30 +129,37 @@ import MoviesList from '../movies-list/movies-list';
                   </Col>
                 );
               if (movies.length === 0) return <div className="main-view" />;
-               // #6
-              return <MoviesList movies={movies}/>;
+              // #6
+              return <MoviesList movies={movies} />;
             }}
           />
-           <Route
-                exact
-                path="/users/:Username"
-                render={({ match, history }) => {
-                  if (!user)
-                    return ( <Col>
-                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-                      </Col>
-                    );
-                  if (movies.length === 0) return <div className="main-view" />;
-                  return ( <Col>
-                    <ProfileView
-                      movies={movies}
-                      user={user}
-                      onBackClick={() => history.goBack()}
-                    />
-                    </Col>
-                  );
-                }}
-              />
+          <Route
+            exact
+            path="/profile"
+            render={() => {
+              if (!user)
+                return (
+                  <Col>
+                    <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                  </Col>
+                );
+
+              // #6
+              return <ProfileView movies={movies} />
+            }}
+          />
+          <Route
+            exact
+            path="/users/:Username"
+            render={({ match, history }) => {
+              if (!user)
+                return (<Col>
+                  <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                </Col>
+                );
+              if (movies.length === 0) return <div className="main-view" />;
+            }}
+          />
           <Route
             path="/register"
             render={() => {
@@ -229,12 +236,12 @@ import MoviesList from '../movies-list/movies-list';
                     onBackClick={() => history.goBack()}
                   />
                 </Col>
-              );  
+              );
             }}
           />
           {/* The rest of routes */}
           <Col md={6}>
-          <button onClick={() => { this.onLoggedOut() }}>Logout</button>
+            <button onClick={() => { this.onLoggedOut() }}>Logout</button>
           </Col>
         </Row>
       </Router>
@@ -246,4 +253,4 @@ let mapStateToProps = state => {
   return { movies: state.movies }
 }
 //#8
-export default connect(mapStateToProps, { setMovies } ) (MainView);
+export default connect(mapStateToProps, { setMovies })(MainView);
