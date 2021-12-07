@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { connect } from 'react-redux';
-
+import { Link } from "react-router-dom";
 // Import statement to indicate that you need to bundle `./index.scss`
 import "../../index.scss";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
@@ -24,6 +24,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Navbar, Nav } from "react-bootstrap";
+import NavBar from '../nav-bar/nav-bar';
 
 //Importing SCSS styling component
 import "./main-view.scss";
@@ -118,6 +119,7 @@ class MainView extends React.Component {
     return (
       <Router>
         <Row className="main-view justify-content-md-center">
+        <Link to={`/profile`}>Profile</Link>
           <Route
             exact
             path="/"
