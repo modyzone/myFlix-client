@@ -22905,7 +22905,7 @@ class MainView extends _reactDefault.default.Component {
                                 lineNumber: 124
                             },
                             __self: this,
-                            children: "Home "
+                            children: "Home"
                         })
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
@@ -22986,6 +22986,24 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __self: this
                     }),
+                    /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                        __source: {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 178
+                        },
+                        __self: this,
+                        children: /*#__PURE__*/ _jsxRuntime.jsx("button", {
+                            onClick: ()=>{
+                                this.onLoggedOut();
+                            },
+                            __source: {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 179
+                            },
+                            __self: this,
+                            children: "Logout"
+                        })
+                    }),
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
                         exact: true,
                         path: "/users/:Username",
@@ -23001,7 +23019,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 178
+                            lineNumber: 181
                         },
                         __self: this
                     }),
@@ -23018,7 +23036,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 190
+                            lineNumber: 193
                         },
                         __self: this
                     }),
@@ -23044,7 +23062,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 201
+                            lineNumber: 204
                         },
                         __self: this
                     }),
@@ -23072,7 +23090,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 222
+                            lineNumber: 225
                         },
                         __self: this
                     }),
@@ -23098,28 +23116,9 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 246
+                            lineNumber: 249
                         },
                         __self: this
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
-                        md: 6,
-                        __source: {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 270
-                        },
-                        __self: this,
-                        children: /*#__PURE__*/ _jsxRuntime.jsx("button", {
-                            onClick: ()=>{
-                                this.onLoggedOut();
-                            },
-                            __source: {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 271
-                            },
-                            __self: this,
-                            children: "Logout"
-                        })
                     })
                 ]
             })

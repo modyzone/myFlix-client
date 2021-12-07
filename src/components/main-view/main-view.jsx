@@ -121,7 +121,7 @@ class MainView extends React.Component {
         <Row className="main-view justify-content-md-center">
       <Nav className="me-auto"> </Nav>
       <Col md={8}>
-        <Link  to={`/`}>Home </Link>
+        <Link  to={`/`}>Home</Link>
         </Col>        
       <Route
             path="/movies/:movieId"
@@ -175,6 +175,9 @@ class MainView extends React.Component {
               return <ProfileView movies={movies} />
             }}
           />
+          <Col>
+            <button onClick={() => { this.onLoggedOut() }}>Logout</button>
+            </Col>
           <Route
             exact
             path="/users/:Username"
@@ -267,9 +270,6 @@ class MainView extends React.Component {
             }}
           />
           {/* The rest of routes */}
-          <Col md={6}>
-            <button onClick={() => { this.onLoggedOut() }}>Logout</button>
-          </Col>
         </Row>
       </Router>
     );
