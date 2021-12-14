@@ -29,35 +29,22 @@ import NavBar from '../nav-bar/nav-bar';
 //Importing SCSS styling component
 import "./main-view.scss";
 // #0
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUser } from '../../actions/actions';
 // we haven't written this one yet
 import MoviesList from '../movies-list/movies-list';
 
 class MainView extends React.Component {
-  constructor() {
-    super();
-    //Initial state is set to null
-    this.state = {
-      /*movies: [],*/
-      /*selectedMovie: null,*/
-      /*Description: null,*/
-      user: null
-    };
-  }
-  getUsers(token) {
-    axios
-      .get("https://thawing-wildwood-26003.herokuapp.com/users/", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        this.setState({
-          users: response.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  //constructor() {
+  /*super();
+  //Initial state is set to null
+  //this.state = {
+    /*movies: [],*/
+  /*selectedMovie: null,*/
+  /*Description: null,*/
+  //user: null
+  //};
+  // }
+
   getMovies(token) {
     axios
       .get("https://thawing-wildwood-26003.herokuapp.com/movies", {
@@ -75,9 +62,7 @@ class MainView extends React.Component {
     let accessToken = localStorage.getItem("token");
     console.log(accessToken);
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user"),
-      });
+      this.props.setUser(localStorage.getItem("user"))
       this.getMovies(accessToken);
     }
   }
@@ -91,9 +76,7 @@ class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-    });
+    this.props.setUser(localStorage.getItem("user"))
 
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
@@ -101,29 +84,34 @@ class MainView extends React.Component {
   }
   onRegistration(authData) {
     console.log(authData);
-    this.setState({});
+    this.props.setUser({});
+    //this.setState({});
   }
 
   onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    this.setState({
-      user: null,
-    });
+    this.props.setUser(null)
   }
 
   render() {
     let { movies } = this.props;
-    let { user } = this.state;
+    let { user } = this.props;
 
     return (
       <Router>
         <Row className="main-view justify-content-md-center">
-      <Nav className="me-auto"> </Nav>
-      <Col md={8}>
-        <Link  to={`/`}>Home</Link>
-        </Col>        
-      <Route
+          <Nav className="justify-content-md-center">
+            <Col md={4} className="me-auto">
+              <Link to={`/`}>Home</Link>
+            </Col>
+            <Col md={4} className="me-auto">
+              <button onClick={() => { this.onLoggedOut() }}>Logout</button> </Col>
+            <Col md={4}> <Link to={`/profile`}>Profile</Link> </Col>
+          </Nav>
+        </Row>
+        <Row className="main-view justify-content-md-center">
+        <Route
             path="/movies/:movieId"
             render={({ match, history }) => {
               if (!user)
@@ -144,7 +132,7 @@ class MainView extends React.Component {
               );
             }}
           />
-        <Link to={`/profile`}>Profile</Link>
+
           <Route
             exact
             path="/"
@@ -175,9 +163,6 @@ class MainView extends React.Component {
               return <ProfileView movies={movies} />
             }}
           />
-          <Col>
-            <button onClick={() => { this.onLoggedOut() }}>Logout</button>
-            </Col>
           <Route
             exact
             path="/users/:Username"
@@ -277,7 +262,7 @@ class MainView extends React.Component {
 }
 // #7
 let mapStateToProps = state => {
-  return { movies: state.movies }
+  return { movies: state.movies, user: state.user }
 }
 //#8
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);

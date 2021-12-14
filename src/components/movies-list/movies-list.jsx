@@ -23,13 +23,9 @@ function MoviesList(props) {
     <Col md={12} style={{ margin: '1em' }}>
       <VisibilityFilterInput visibilityFilter={visibilityFilter} />
     </Col>
-    {filteredMovies.map(m => (
-      <Col md={3} key={m._id}>
-        <MovieCard movie={m} />
-      </Col>
-    ))}
+   
   </>;
 }
-export default connect(mapStateToProps)(MoviesList);
+
 
 export default connect(mapStateToProps, null)(MoviesList);
