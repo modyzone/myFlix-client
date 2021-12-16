@@ -20,7 +20,7 @@ function MoviesList(props) {
   if (!movies) return <div className="main-view" />;
 
   return <>
-  <Row>
+  
     <Col md={12} style={{ margin: '1em' }}>
       <VisibilityFilterInput visibilityFilter={visibilityFilter} />
     </Col>
@@ -29,7 +29,7 @@ function MoviesList(props) {
         <MovieCard movie={m} />
       </Col>
     ))}
-    </Row>
+    
   </>;
 }
 
