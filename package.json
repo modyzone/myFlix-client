@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "jsdoc": "^3.6.10",
-    "parcel": "^2.3.2",
+    "parcel": "^2.0.0-rc.0",
     "parcel-bundler": "^1.12.5"
   }
 }
