@@ -2,6 +2,7 @@
   "name": "myflix-client",
   "version": "1.0.0",
   "description": "",
+  "main": "src/index.html",
   "browserslist": [
     "last 1 Chrome versions"
   ],
