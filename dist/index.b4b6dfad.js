@@ -26591,6 +26591,8 @@ parcelHelpers.export(exports, "SET_USER", ()=>SET_USER
 );
 parcelHelpers.export(exports, "UPDATE_USER", ()=>UPDATE_USER
 );
+parcelHelpers.export(exports, "SET_UPDATE", ()=>SET_UPDATE
+);
 parcelHelpers.export(exports, "setMovies", ()=>setMovies
 );
 parcelHelpers.export(exports, "setFilter", ()=>setFilter
@@ -26603,6 +26605,7 @@ const SET_MOVIES = 'SET_MOVIES';
 const SET_FILTER = 'SET_FILTER';
 const SET_USER = 'SET_USER';
 const UPDATE_USER = 'UPDATE_USER';
+const SET_UPDATE = 'SET_UPDATE';
 function setMovies(value) {
     return {
         type: SET_MOVIES,
