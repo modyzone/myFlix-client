@@ -27,19 +27,11 @@ function user(state = '', action) {
                 return state;
     }
 }
-function userupdate(state = '', action) {
-    switch (action.type) {
-        case SET_UPDATE:
-            return action.value;
-            default:
-                return state;
-    }
-}
+
 const moviesApp = combineReducers({
     visibilityFilter,
     movies,
     user,
-    userupdate
 });
 
 
